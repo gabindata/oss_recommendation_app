@@ -1,0 +1,18 @@
+services:
+  back:
+    build: ./back
+    container_name: jpop-back
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+
+  front:
+    build: ./front
+    container_name: jpop-front
+    ports:
+      - "8501:8501"
+    environment:
+      - API_URL=http://back:8000
+    depends_on:
+      - back
+    restart: unless-stopped

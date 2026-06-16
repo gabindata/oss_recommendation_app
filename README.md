@@ -38,7 +38,7 @@ oss_recommendation_app/
 
 ### 실행
 
-- Docker 및 Docker Compose 설치 필요
+Docker 및 Docker Compose 사전에 설치 필요
 
 ```bash
 git clone https://github.com/gabindata/oss_recommendation_app.git

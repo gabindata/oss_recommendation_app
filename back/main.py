@@ -11,23 +11,23 @@ app = FastAPI(title="J-POP 취향 추천 API")
 CATEGORIES = ["CP", "RB", "DC", "HH", "AN", "OST", "RK"]
 
 CATEGORY_NAMES = {
-    "CP": "시티팝 (City Pop)",
+    "CP": "시티팝",
     "RB": "R&B",
-    "DC": "댄스 (Dance)",
-    "HH": "힙합 (Hip-hop)",
-    "AN": "애니메이션 (Anime)",
+    "DC": "댄스",
+    "HH": "힙합",
+    "AN": "애니메이션",
     "OST": "드라마·영화 OST",
-    "RK": "락 (Rock)",
+    "RK": "락",
 }
 
 CATEGORY_DESCRIPTIONS = {
-    "CP": "도시의 밤과 노스탤지어가 떠오르는, 여유롭고 그루비한 사운드를 좋아하는 당신!",
-    "RB": "부드럽고 소울풀한 보컬, 감성적인 무드를 즐기는 당신!",
-    "DC": "신나는 비트와 화려한 퍼포먼스에 끌리는 당신!",
-    "HH": "자유롭고 솔직한 리듬, 톡톡 튀는 플로우를 좋아하는 당신!",
-    "AN": "두근거리는 청춘과 감성 스토리를 사랑하는 당신!",
-    "OST": "영화 같은 순간, 드라마틱한 스토리텔링을 즐기는 당신!",
-    "RK": "강렬한 라이브 사운드와 에너지를 좋아하는 당신!",
+    "CP": "도시의 밤과 노스탤지어가 떠오르는, 여유롭고 그루비한 사운드를 좋아하시는군요... ",
+    "RB": "부드럽고 소울풀한 보컬, 감성적인 무드를 즐기시는군요...",
+    "DC": "신나는 비트와 화려한 퍼포먼스에 끌리시는군요...",
+    "HH": "자유롭고 솔직한 리듬, 톡톡 튀는 플로우를 좋아하시는군요...",
+    "AN": "두근거리는 청춘과 감성 스토리를 사랑하시는군요...",
+    "OST": "영화 같은 순간, 드라마틱한 스토리텔링을 즐기시는군요...",
+    "RK": "강렬한 라이브 사운드와 에너지를 좋아하시는군요...",
 }
 
 # 동점 방지를 위한 카테고리별 보정값
@@ -48,32 +48,32 @@ EPSILON = {
 # ----------------------------------------------------------
 SONGS: Dict[str, List[Dict[str, str]]] = {
     "CP": [
-        {"title": "Plastic Love", "artist": "타케우치 마리야 (竹内まりや)"},
-        {"title": "Fantasy", "artist": "나카하라 메이코 (中原めいこ)"},
+        {"title": "Plastic Love", "artist": "타케우치 마리야 (竹内まりや)", "description": "1984년 발표된 시티팝의 상징. 유튜브 알고리즘으로 전 세계에 재조명된 전설의 곡."},
+        {"title": "Fantasy", "artist": "나카하라 메이코 (中原めいこ)", "description": "몽환적인 신스팝 사운드로 도시의 밤을 달리는 듯한 그루비한 감성."},
     ],
     "RB": [
-        {"title": "Boyfriend", "artist": "크리스탈 케이 (Crystal Kay)"},
-        {"title": "Garden", "artist": "후지이 카제 (藤井 風)"},
+        {"title": "Boyfriend", "artist": "크리스탈 케이 (Crystal Kay)", "description": "소울풀한 보컬과 부드러운 그루브가 돋보이는 크리스탈 케이의 대표곡."},
+        {"title": "Garden", "artist": "후지이 카제 (藤井 風)", "description": "피아노와 소울풀한 보컬이 어우러진 감성 R&B."},
     ],
     "DC": [
-        {"title": "Make Up Day", "artist": "나니와단시 (なにわ男子)"},
-        {"title": "Drive in My Tokyo", "artist": "ICEx"},
+        {"title": "Make Up Day", "artist": "나니와단시 (なにわ男子)", "description": "밝고 경쾌한 아이돌 댄스팝. 화려한 군무와 함께하면 더욱 신나는 곡."},
+        {"title": "Drive in My Tokyo", "artist": "ICEx", "description": "도쿄 감성의 세련된 댄스 트랙. ICEx 특유의 퍼포먼스가 돋보임."},
     ],
     "HH": [
-        {"title": "Bling-Bang-Bang-Born", "artist": "Creepy Nuts"},
-        {"title": "Uchida 1", "artist": "GINTA & ODAKEi"},
+        {"title": "Bling-Bang-Bang-Born", "artist": "Creepy Nuts", "description": "애니메이션 '마시로의 창조' OP. 강렬한 비트와 중독성 있는 훅으로 전 세계 챌린지 열풍."},
+        {"title": "Uchida 1", "artist": "GINTA & ODAKEi", "description": "독특한 플로우와 비트가 특징인 일본 언더그라운드 힙합."},
     ],
     "AN": [
-        {"title": "finale", "artist": "eill"},
-        {"title": "愛にできることはまだあるかい", "artist": "RADWIMPS"},
+        {"title": "finale", "artist": "eill", "description": "애니메이션 '체인소 맨' 삽입곡. eill의 섬세한 보컬이 감동적인 엔딩을 완성."},
+        {"title": "愛にできることはまだあるかい", "artist": "RADWIMPS", "description": "영화 '날씨의 아이' OST. RADWIMPS 특유의 서정적인 감성이 가득."},
     ],
     "OST": [
-        {"title": "初恋", "artist": "우타다 히카루 (宇多田ヒカル)"},
-        {"title": "One in a Million -奇跡の夜に-", "artist": "GENERATIONS from EXILE TRIBE"},
+        {"title": "初恋", "artist": "우타다 히카루 (宇多田ヒカル)", "description": "Netflix 드라마 '퍼스트 러브 하츠코이' OST. 애절한 보컬이 드라마의 감동을 배가."},
+        {"title": "One in a Million -奇跡の夜に-", "artist": "GENERATIONS from EXILE TRIBE", "description": "웅장한 편곡과 파워풀한 퍼포먼스가 인상적인 드라마틱한 OST."},
     ],
     "RK": [
-        {"title": "ホワイトノイズ", "artist": "Official髭男dism"},
-        {"title": "A Priori", "artist": "Mrs. GREEN APPLE"},
+        {"title": "ホワイトノイズ", "artist": "Official髭男dism", "description": "폭발적인 에너지와 감정선이 공존하는 강렬한 록 넘버."},
+        {"title": "A Priori", "artist": "Mrs. GREEN APPLE", "description": "세련된 멜로디와 독창적인 세계관이 돋보이는 팝록 트랙."},
     ],
 }
 
@@ -182,7 +182,7 @@ QUESTIONS = [
 # 4. 요청 / 응답 모델
 # ----------------------------------------------------------
 class AnswerRequest(BaseModel):
-    answers: List[str]  # 예: ["A", "C", "B", "D", "A", "B", "C", "A", "D", "G"]
+    answers: List[str]  
 
 
 class RecommendResponse(BaseModel):

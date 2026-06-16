@@ -3,7 +3,7 @@ import os
 import requests
 import streamlit as st
 
-# 같은 docker-compose 네트워크에서는 서비스명(back)으로 접근,
+# 같은 docker-compose 네트워크에서는 서비스명으로 접근,
 # 로컬에서 따로 실행할 때는 localhost:8000 사용
 API_URL = os.environ.get("API_URL", "http://localhost:8000")
 
@@ -86,13 +86,14 @@ if st.button("🎧 추천 받기", type="primary", use_container_width=True):
     if not result.get("category"):
         st.error(result.get("description", "알 수 없는 오류가 발생했습니다."))
         st.stop()
-
-    st.write(result["description"])
-    st.success(f"당신의 J-POP 취향은 **{result['category_name']}** 입니다!")
+    
+    st.write(f"{result['description']}🔍")
+    st.success(f"그렇다면 당신의 J-POP 취향은 **{result['category_name']}** 입니다!")
 
     st.write("### 🎶 추천곡")
     for song in result["songs"]:
         st.markdown(f"- **{song['title']}** — {song['artist']}")
+        st.markdown(f"> {song.get('description', '')}")
 
     with st.expander("카테고리별 점수 자세히 보기"):
         named_scores = {
@@ -100,3 +101,11 @@ if st.button("🎧 추천 받기", type="primary", use_container_width=True):
             for code, score in result["scores"].items()
         }
         st.json(named_scores)
+    
+    st.caption("동점일 경우 락, 드라마·영화 OST, 애니메이션, 힙합, 댄스, R&B, 시티팝 순으로 우선 결정됩니다.")
+
+    st.divider()
+    if st.button("🔄 다시 하기", use_container_width=True):
+        st.rerun()
+
+

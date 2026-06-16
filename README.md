@@ -36,11 +36,9 @@ oss_recommendation_app/
 
 ## 🚀 실행 방법
 
-### 사전 준비
+### 실행
 
 - Docker 및 Docker Compose 설치 필요
-
-### 실행
 
 ```bash
 git clone https://github.com/gabindata/oss_recommendation_app.git
@@ -76,13 +74,15 @@ docker compose up --build
 
 | 코드 | 장르 |
 |------|------|
-| CP | 시티팝 (City Pop) |
+| CP | 시티팝 |
 | RB | R&B |
-| DC | 댄스 (Dance) |
-| HH | 힙합 (Hip-hop) |
-| AN | 애니메이션 (Anime) |
+| DC | 댄스 |
+| HH | 힙합 |
+| AN | 애니메이션 |
 | OST | 드라마·영화 OST |
-| RK | 락 (Rock) |
+| RK | 락 |
+
+> 동점일 경우 락, 드라마·영화 OST, 애니메이션, 힙합, 댄스, R&B, 시티팝 순으로 우선 결정됩니다.
 
 ---
 

@@ -66,7 +66,7 @@ docker compose up --build
 2. 사용자가 10개의 질문에 답하고 **추천 받기** 버튼을 클릭합니다.
 3. Streamlit이 FastAPI `/recommend`에 답변 목록을 POST 요청으로 전송합니다.
 4. FastAPI가 rule-based 가중치 합산으로 J-POP 장르를 분석하고 JSON으로 반환합니다.
-5. Streamlit이 결과를 받아 장르명, 설명, 추천곡 2곡을 화면에 표시합니다.
+5. Streamlit이 결과를 받아 장르명, 취향 설명, 추천곡 2곡(제목·아티스트·곡 설명)을 화면에 표시합니다.
 
 ---
 
@@ -102,12 +102,20 @@ docker compose up --build
 ```json
 {
   "category": "CP",
-  "category_name": "시티팝 (City Pop)",
-  "description": "도시의 밤과 노스탤지어가 떠오르는, 여유롭고 그루비한 사운드를 좋아하는 당신!",
+  "category_name": "시티팝",
+  "description": "도시의 밤과 노스탤지어가 떠오르는, 여유롭고 그루비한 사운드를 좋아하시는군요...",
   "scores": { "CP": 10, "RB": 3, "...": "..." },
   "songs": [
-    { "title": "Plastic Love", "artist": "타케우치 마리야 (竹内まりや)" },
-    { "title": "Fantasy", "artist": "나카하라 메이코 (中原めいこ)" }
+    {
+      "title": "Plastic Love",
+      "artist": "타케우치 마리야 (竹内まりや)",
+      "description": "1984년 발표된 시티팝의 상징. 유튜브 알고리즘으로 전 세계에 재조명된 전설의 곡."
+    },
+    {
+      "title": "Fantasy",
+      "artist": "나카하라 메이코 (中原めいこ)",
+      "description": "몽환적인 신스팝 사운드로 도시의 밤을 달리는 듯한 그루비한 감성."
+    }
   ]
 }
 ```
